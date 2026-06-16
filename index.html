@@ -8,24 +8,17 @@
     <style>
         /* Nord Theme Color Palette */
         :root {
-            /* Polar Night */
             --nord0: #2E3440;
             --nord1: #3B4252;
             --nord2: #434C5E;
             --nord3: #4C566A;
-            
-            /* Snow Storm */
             --nord4: #D8DEE9;
             --nord5: #E5E9F0;
             --nord6: #ECEFF4;
-            
-            /* Frost */
             --nord7: #8FBCBB;
             --nord8: #88C0D0;
             --nord9: #81A1C1;
             --nord10: #5E81AC;
-            
-            /* Aurora */
             --nord11: #BF616A;
             --nord12: #D08770;
             --nord13: #EBCB8B;
@@ -44,7 +37,6 @@
             line-height: 1.6;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 12px; }
         ::-webkit-scrollbar-track { background: var(--nord1); }
         ::-webkit-scrollbar-thumb { background: var(--nord3); border-radius: 6px; }
@@ -80,7 +72,6 @@
             font-weight: 400;
         }
 
-        /* Search Bar */
         .search-box {
             width: 100%;
             padding: 14px 20px;
@@ -100,7 +91,6 @@
             background: var(--nord2);
         }
 
-        /* Quick Nav */
         .quick-nav {
             background: var(--nord1);
             border: 1px solid var(--nord3);
@@ -108,10 +98,13 @@
             border-radius: 8px;
             text-align: center;
             margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
         }
         .quick-nav a {
             display: inline-block;
-            margin: 5px 6px;
             padding: 6px 14px;
             color: var(--nord4);
             text-decoration: none;
@@ -175,7 +168,6 @@
         }
         .item-desc { font-size: 14px; color: var(--nord4); margin: 0; font-weight: 400; line-height: 1.5; }
 
-        /* Base Button Style */
         .btn-download {
             background: var(--nord2);
             color: var(--nord8);
@@ -195,7 +187,6 @@
             box-shadow: 0 2px 8px rgba(136, 192, 208, 0.3);
         }
 
-        /* Button Variants - Nord Colors */
         .btn-ms { border-color: var(--nord14); color: var(--nord14); }
         .btn-ms:hover { background: var(--nord14); color: var(--nord0); box-shadow: 0 2px 8px rgba(163, 190, 140, 0.3); }
         
@@ -300,7 +291,6 @@
             background: var(--nord1);
         }
 
-        /* ===== Back to Top Button ===== */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -363,7 +353,7 @@
             header h1 { font-size: 22px; }
             .container { margin: 20px auto; padding: 15px; }
         }
-    a { text-decoration: none; }
+        a { text-decoration: none; }
     </style>
 </head>
 <body>
@@ -374,26 +364,26 @@
         <p>คลังลิงก์ดาวน์โหลด OS, แผ่นกู้ระบบ WinPE, เครื่องมือวิเคราะห์ฮาร์ดแวร์, สคริปต์ระบบ และโปรแกรมสามัญประจำเครื่อง</p>
     </header>
 
-    <!-- Search Bar -->
-    <input type="text" id="searchInput" class="search-box" onkeyup="filterTools()" placeholder="🔍 ค้นหาโปรแกรม... เช่น WinPE, Ventoy, CrystalDisk, Network, Torrent, Driver">
+    <input type="text" id="searchInput" class="search-box" onkeyup="filterTools()" placeholder="🔍 ค้นหาโปรแกรม... เช่น WinPE, Ventoy, Partition, Recovery, RustDesk, Driver">
 
-    <!-- Quick Navigation -->
     <div class="quick-nav">
-        <a href="#os">💿 Windows OS</a>
+        <a href="#os">💿 OS</a>
         <a href="#winpe">🛡️ WinPE</a>
-        <a href="#boot">🔧 Boot Tools</a>
+        <a href="#boot">🔧 Boot</a>
         <a href="#backup">💾 Backup</a>
+        <a href="#partition">🗂️ Partition</a>
+        <a href="#recovery">💿 Recovery</a>
         <a href="#hardware">🔬 Hardware</a>
         <a href="#driver">🔌 Drivers</a>
         <a href="#network">🌐 Network</a>
-        <a href="#clean">🧹 Clean/Optimize</a>
-        <a href="#sysutil">⚙️ System Utils</a>
+        <a href="#remote">🖥️ Remote</a>
+        <a href="#clean">🧹 Clean</a>
+        <a href="#sysutil">⚙️ SysUtils</a>
         <a href="#apps">🚀 Apps</a>
-        <a href="#software">🌐 Software Web</a>
-        <a href="#torrent">📥 P2P/Torrent</a>
+        <a href="#software">🌐 Web</a>
+        <a href="#torrent">📥 P2P</a>
     </div>
 
-    <!-- หมวดหมู่: ระบบปฏิบัติการหลัก -->
     <div class="category" id="os">
         <div class="category-title">💿 ระบบปฏิบัติการ Windows (Official Links)</div>
         <ul class="download-list">
@@ -414,7 +404,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: แผ่นกู้ภัยระบบปฏิบัติการจำลอง (WinPE / BootCD) -->
     <div class="category" id="winpe">
         <div class="category-title">🛡️ แผ่นกู้ภัยและวินโดวส์จำลอง (WinPE / Diagnostic Boot)</div>
         <ul class="download-list">
@@ -442,7 +431,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: เครื่องมือสร้างตัวบูตระบบ -->
     <div class="category" id="boot">
         <div class="category-title">🛠️ เครื่องมือสร้างตัวบูตระบบ (Bootable Tools)</div>
         <ul class="download-list">
@@ -470,7 +458,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: เครื่องมือสำรองข้อมูลและจัดการดิสก์ -->
     <div class="category" id="backup">
         <div class="category-title">💾 เครื่องมือสำรองข้อมูลและจัดการดิสก์ (Backup & Disk Tools)</div>
         <ul class="download-list">
@@ -491,7 +478,62 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: วิเคราะห์ฮาร์ดแวร์และสเปก -->
+    <!-- หมวดหมู่ใหม่ A2: Partition Manager -->
+    <div class="category" id="partition">
+        <div class="category-title">🗂️ เครื่องมือจัดการพาร์ทิชัน (Partition Manager)</div>
+        <ul class="download-list">
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">GParted Live</div>
+                    <div class="item-desc">โปรแกรมจัดการพาร์ทิชันแบบ Open-source ระดับตำนาน รันผ่าน USB ได้โดยตรง รองรับการย่อ/ขยาย/ย้าย พาร์ทิชัน Linux และ Windows ได้อย่างปลอดภัย</div>
+                </div>
+                <a href="https://gparted.org/liveusb.php" target="_blank" class="btn-download btn-hw">ไปที่หน้าโหลด</a>
+            </li>
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">MiniTool Partition Wizard Free</div>
+                    <div class="item-desc">โปรแกรมจัดการดิสก์แบบ GUI ที่ใช้งานง่ายยอดนิยม สำหรับย่อ ขยาย หรือรวมพาร์ทิชันใน Windows โดยไม่เสียข้อมูล (มีข้อจำกัดในเวอร์ชันฟรี)</div>
+                </div>
+                <a href="https://www.minitool.com/partition-manager/partition-wizard-home.html" target="_blank" class="btn-download btn-orange">ไปที่หน้าโหลด</a>
+            </li>
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">AOMEI Partition Assistant Standard</div>
+                    <div class="item-desc">ทางเลือกฟรีที่ทรงพลังอีกตัวหนึ่ง รองรับการโคลนดิสก์ ย้าย OS ไป SSD และจัดการพาร์ทิชันพื้นฐานได้ครบถ้วน</div>
+                </div>
+                <a href="https://www.aomeitech.com/partition-manager.html" target="_blank" class="btn-download btn-orange">ไปที่หน้าโหลด</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- หมวดหมู่ใหม่ A3: Data Recovery -->
+    <div class="category" id="recovery">
+        <div class="category-title">💾 กู้คืนข้อมูลที่สูญหาย (Data Recovery)</div>
+        <ul class="download-list">
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">Recuva</div>
+                    <div class="item-desc">โปรแกรมกู้ไฟล์ที่ลบผิดหรือฟอร์แมตผิดจากค่าย CCleaner ใช้งานง่าย ฟรี และรองรับการกู้ไฟล์จาก HDD, SSD, USB และ Memory Card</div>
+                </div>
+                <a href="https://www.ccleaner.com/recuva/download" target="_blank" class="btn-download btn-clean">ไปที่หน้าโหลด</a>
+            </li>
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">TestDisk & PhotoRec</div>
+                    <div class="item-desc">เครื่องมือกู้ข้อมูลระดับลึกแบบ Open-source (Command Line) ทรงพลังมาก สามารถกู้พาร์ทิชันที่หายและไฟล์รูปภาพ/เอกสารได้แม้โครงสร้างไฟล์เสียหาย</div>
+                </div>
+                <a href="https://www.cgsecurity.org/wiki/TestDisk_Download" target="_blank" class="btn-download btn-gh">ไปที่หน้าโหลด (GitHub)</a>
+            </li>
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">EaseUS Data Recovery Wizard Free</div>
+                    <div class="item-desc">โปรแกรมกู้ข้อมูลแบบ GUI ที่สแกนได้ลึกและแสดงผลเป็นหมวดหมู่ชัดเจน (เวอร์ชันฟรีจำกัดปริมาณการกู้ที่ 2GB)</div>
+                </div>
+                <a href="https://www.easeus.com/data-recovery-software.htm" target="_blank" class="btn-download btn-orange">ไปที่หน้าโหลด</a>
+            </li>
+        </ul>
+    </div>
+
     <div class="category" id="hardware">
         <div class="category-title">🔬 วิเคราะห์ฮาร์ดแวร์และสเปก (Hardware & Diagnostics)</div>
         <ul class="download-list">
@@ -540,14 +582,13 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: เครื่องมือจัดการ Driver -->
     <div class="category" id="driver">
         <div class="category-title">🔌 เครื่องมือจัดการ Driver (Driver Management)</div>
         <ul class="download-list">
             <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Snappy Driver Installer Origin (SDIO)</div>
-                    <div class="item-desc">เครื่องมือติดตั้ง Driver Offline ระดับตำนานของช่างคอม Open-source 100% ไม่มีโฆษณา ไม่มีแถมโปรแกรมขยะ รองรับ Windows 7/8/10/11 มีทั้งเวอร์ชัน Lite (โหลดเฉพาะ driver ที่ขาด) และ Full (มี driver ทั้งหมดในเครื่อง ~35GB)</div>
+                    <div class="item-desc">เครื่องมือติดตั้ง Driver Offline ระดับตำนานของช่างคอม Open-source 100% ไม่มีโฆษณา ไม่มีแถมโปรแกรมขยะ รองรับ Windows 7/8/10/11 มีทั้งเวอร์ชัน Lite และ Full</div>
                     <div class="warn-box">
                         <strong>💡 คำแนะนำ:</strong> ใช้เวอร์ชัน <strong>Origin</strong> (sdi-tool.org) เท่านั้น ไม่ใช่เวอร์ชัน fork อื่นที่อาจมีโฆษณาแฝง
                     </div>
@@ -557,9 +598,9 @@
             <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">IObit Driver Booster Free</div>
-                    <div class="item-desc">โปรแกรมอัปเดต Driver อัตโนมัติยอดนิยม สแกนหา driver ที่ล้าสมัยแล้วดาวน์โหลดเวอร์ชันใหม่ให้ทันที ใช้งานง่าย เหมาะกับผู้ใช้งานทั่วไปที่ไม่ถนัด IT</div>
+                    <div class="item-desc">โปรแกรมอัปเดต Driver อัตโนมัติยอดนิยม สแกนหา driver ที่ล้าสมัยแล้วดาวน์โหลดเวอร์ชันใหม่ให้ทันที ใช้งานง่าย</div>
                     <div class="warn-box">
-                        <strong>⚠️ คำเตือน:</strong> ตอนติดตั้งให้เลือก <strong>Custom Install</strong> และ <strong>ยกเลิกติ๊กถูก</strong> ทุกช่องที่เสนอให้ติดตั้งโปรแกรมเพิ่มเติม (เช่น IObit Software Updater, Protected Browsing) เพื่อป้องกัน Adware/Bloatware
+                        <strong>⚠️ คำเตือน:</strong> ตอนติดตั้งให้เลือก <strong>Custom Install</strong> และ <strong>ยกเลิกติ๊กถูก</strong> ทุกช่องที่เสนอให้ติดตั้งโปรแกรมเพิ่มเติม เพื่อป้องกัน Adware/Bloatware
                     </div>
                 </div>
                 <a href="https://www.iobit.com/en/driver-booster.php" target="_blank" class="btn-download btn-driver-warn">ไปที่หน้าโหลด</a>
@@ -567,7 +608,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: ระบบเครือข่าย -->
     <div class="category" id="network">
         <div class="category-title">🌐 เครื่องมือระบบเครือข่าย (Network Tools)</div>
         <ul class="download-list">
@@ -602,7 +642,34 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: ทำความสะอาดและ Optimize -->
+    <!-- หมวดหมู่ใหม่ A5: Remote Desktop เพิ่มเติม -->
+    <div class="category" id="remote">
+        <div class="category-title">🖥️ โปรแกรมรีโมทและซัพพอร์ตทางไกล (Remote Desktop & Support)</div>
+        <ul class="download-list">
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">RustDesk</div>
+                    <div class="item-desc">ทางเลือก Open-source แทน TeamViewer/AnyDesk ใช้งานง่าย ไม่ต้องติดตั้งก็ได้ รองรับการ Host เซิร์ฟเวอร์เองเพื่อความปลอดภัยสูงสุด</div>
+                </div>
+                <a href="https://rustdesk.com/" target="_blank" class="btn-download btn-gh">ไปที่หน้าโหลด (GitHub)</a>
+            </li>
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">TeamViewer</div>
+                    <div class="item-desc">ซอฟต์แวร์รีโมทระดับมาตรฐานอุตสาหกรรม ฟีเจอร์ครบครัน (ฟรีสำหรับการใช้งานส่วนบุคคล)</div>
+                </div>
+                <a href="https://www.teamviewer.com/en/download/" target="_blank" class="btn-download btn-net">ไปที่หน้าโหลด</a>
+            </li>
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">Chrome Remote Desktop</div>
+                    <div class="item-desc">ส่วนขยายของ Google Chrome สำหรับรีโมทเครื่องผ่านเบราว์เซอร์ เบาเครื่องและไม่ต้องติดตั้งโปรแกรมเพิ่ม</div>
+                </div>
+                <a href="https://remotedesktop.google.com/" target="_blank" class="btn-download btn-ms">ไปที่หน้าเว็บ</a>
+            </li>
+        </ul>
+    </div>
+
     <div class="category" id="clean">
         <div class="category-title">🧹 ทำความสะอาดและ Optimize ระบบ</div>
         <ul class="download-list">
@@ -630,7 +697,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: เครื่องมือจัดการระบบและสคริปต์ -->
     <div class="category" id="sysutil">
         <div class="category-title">⚙️ เครื่องมือจัดการระบบและสคริปต์ (System Utilities & Scripts)</div>
         <ul class="download-list">
@@ -658,7 +724,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: โปรแกรมสามัญประจำเครื่อง -->
     <div class="category" id="apps">
         <div class="category-title">🚀 โปรแกรมติดตั้งประจำเครื่อง (Applications & Utilities)</div>
         <ul class="download-list">
@@ -700,7 +765,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: เว็บไซต์ดาวน์โหลดซอฟต์แวร์และคลังโปรแกรม -->
     <div class="category" id="software">
         <div class="category-title">🌐 เว็บไซต์ดาวน์โหลดซอฟต์แวร์ & คลังโปรแกรม (Software Warehouses)</div>
         <ul class="download-list">
@@ -721,7 +785,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่: เครื่องมือดาวน์โหลดและคลังไฟล์ Torrent -->
     <div class="category" id="torrent">
         <div class="category-title">📥 เครื่องมือดาวน์โหลด & คลังไฟล์ Torrent (P2P Downloads)</div>
         <div class="disclaimer">
@@ -773,7 +836,6 @@
     </footer>
 </div>
 
-<!-- ===== Back to Top Button ===== -->
 <button class="back-to-top" id="backToTop" aria-label="กลับขึ้นบนสุด">
     <span class="tooltip">กลับขึ้นบนสุด</span>
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -782,7 +844,6 @@
 </button>
 
 <script>
-// ===== Filter Search =====
 function filterTools() {
     const input = document.getElementById('searchInput').value.toLowerCase().trim();
     const items = document.querySelectorAll('.download-item');
@@ -819,7 +880,6 @@ function filterTools() {
     }
 }
 
-// Smooth scroll for quick nav
 document.querySelectorAll('.quick-nav a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -830,9 +890,7 @@ document.querySelectorAll('.quick-nav a').forEach(anchor => {
     });
 });
 
-// ===== Back to Top Button Logic =====
 const backToTopBtn = document.getElementById('backToTop');
-
 window.addEventListener('scroll', () => {
     if (window.pageYOffset > 300) {
         backToTopBtn.classList.add('show');
