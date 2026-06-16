@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คู่มือคำสั่ง CMD & PowerShell สำหรับช่างซ่อมคอม (v2.0)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        tech: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .command-card { transition: all 0.2s ease-in-out; }
+        .command-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .toast { visibility: hidden; min-width: 250px; background-color: #10b981; color: white; text-align: center; border-radius: 8px; padding: 12px; position: fixed; z-index: 50; left: 50%; bottom: 30px; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s, bottom 0.3s; }
+        .toast.show { visibility: visible; opacity: 1; bottom: 50px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <header class="bg-tech-900 text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-screwdriver-wrench text-3xl text-tech-500"></i>
+                    <div>
+                        <h1 class="text-xl md:text-2xl font-bold">TechRepair Command Center <span class="text-xs bg-tech-500 px-2 py-0.5 rounded text-white align-middle">v2.0</span></h1>
+                        <p class="text-xs md:text-sm text-tech-100">รวมคำสั่ง CMD & PowerShell สำหรับช่างซ่อมคอมพิวเตอร์</p>
+                    </div>
+                </div>
+                <div class="bg-red-500/20 border border-red-500/50 rounded-lg px-4 py-2 flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-triangle-exclamation text-red-400"></i>
+                    <span class="font-medium text-red-100">คำเตือน: ต้องเปิด Terminal แบบ <strong>Run as Administrator</strong> เสมอ</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <div class="mb-8 space-y-4">
+            <div class="relative">
+                <i class="fa-solid fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" placeholder="ค้นหาคำสั่ง หรือ อาการ (เช่น 'เน็ตหลุด', 'boot', 'ไวรัสซ่อนไฟล์', 'license')" 
+                    class="w-full pl-12 pr-4 py-3 rounded-xl border border-slate-200 focus:border-tech-500 focus:ring-2 focus:ring-tech-100 outline-none transition shadow-sm text-lg">
+            </div>
+            
+            <div class="flex flex-wrap gap-2" id="filterContainer">
+                <button onclick="filterCommands('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-tech-600 text-white shadow-md transition hover:bg-tech-700" data-category="all">ทั้งหมด</button>
+                <button onclick="filterCommands('system')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-slate-600 border border-slate-200 shadow-sm transition hover:bg-slate-50" data-category="system">ซ่อมแซมระบบ (System)</button>
+                <button onclick="filterCommands('network')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-slate-600 border border-slate-200 shadow-sm transition hover:bg-slate-50" data-category="network">เครือข่าย (Network)</button>
+                <button onclick="filterCommands('disk')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-slate-600 border border-slate-200 shadow-sm transition hover:bg-slate-50" data-category="disk">ดิสก์ & พื้นที่เก็บข้อมูล (Disk)</button>
+                <button onclick="filterCommands('hardware')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-slate-600 border border-slate-200 shadow-sm transition hover:bg-slate-50" data-category="hardware">ตรวจสอบฮาร์ดแวร์ (Hardware)</button>
+                <button onclick="filterCommands('user')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-slate-600 border border-slate-200 shadow-sm transition hover:bg-slate-50" data-category="user">ผู้ใช้ & สิทธิ์ (User)</button>
+            </div>
+        </div>
+
+        <div id="commandsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+        <div id="emptyState" class="hidden text-center py-16">
+            <i class="fa-solid fa-box-open text-6xl text-slate-300 mb-4"></i>
+            <p class="text-slate-500 text-lg">ไม่พบคำสั่งที่ตรงกับคำค้นหา</p>
+        </div>
+
+        <div class="mt-12 bg-gradient-to-r from-tech-800 to-tech-900 rounded-2xl p-6 md:p-8 text-white shadow-xl">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-lightbulb text-yellow-400"></i> Pro Tips สำหรับช่าง
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6 text-sm md:text-base text-tech-100">
+                <div class="space-y-3">
+                    <p><strong class="text-white">1. เครื่องอืด/ค้างบ่อย:</strong> เริ่มจาก <code class="bg-black/30 px-1 rounded">sfc /scannow</code> ตามด้วย <code class="bg-black/30 px-1 rounded">DISM...</code> เสมอ ก่อนตัดสินใจลง Windows ใหม่</p>
+                    <p><strong class="text-white">2. เน็ตเชื่อมต่อแต่ใช้งานไม่ได้:</strong> มักแก้ได้ด้วยการ <code class="bg-black/30 px-1 rounded">netsh winsock reset</code> แล้วรีสตาร์ทเครื่อง</p>
+                    <p><strong class="text-white">3. ไวรัสซ่อนไฟล์ใน Flash Drive:</strong> อย่าเพิ่ง Format! ใช้คำสั่ง <code class="bg-black/30 px-1 rounded">attrib</code> เพื่อเลิกซ่อนไฟล์ก่อน แล้วค่อยสแกนไวรัส</p>
+                </div>
+                <div class="space-y-3">
+                    <p><strong class="text-white">4. เปิดเครื่องไม่ติด (No Bootable Device):</strong> เข้า Recovery Environment แล้วใช้ชุดคำสั่ง <code class="bg-black/30 px-1 rounded">bootrec</code> เพื่อซ่อม Boot Sector</p>
+                    <p><strong class="text-white">5. Windows Update ค้าง/Error:</strong> ให้หยุดบริการ wuauserv, ลบโฟลเดอร์ SoftwareDistribution แล้วเริ่มบริการใหม่</p>
+                    <p><strong class="text-white">6. ก่อนเริ่มซ่อมเครื่องลูกค้า:</strong> สร้าง Restore Point ด้วย PowerShell เสมอ เพื่อความรับผิดชอบและป้องกันปัญหาตามมา</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 mt-12 text-center text-sm">
+        <p>© 2026 TechRepair Command Center. สร้างขึ้นเพื่ออำนวยความสะดวกในการทำงานของช่างซ่อมคอมพิวเตอร์</p>
+        <p class="mt-1 text-xs text-slate-500">คำเตือน: การใช้คำสั่งบางคำสั่ง (เช่น diskpart clean) จะทำให้ข้อมูลสูญหาย โปรดตรวจสอบให้แน่ใจก่อนดำเนินการ</p>
+    </footer>
+
+    <div id="toast" class="toast shadow-lg">
+        <i class="fa-solid fa-check-circle mr-2"></i> คัดลอกคำสั่งเรียบร้อยแล้ว!
+    </div>
+
+    <script>
+        const commands = [
+            // --- System Repair ---
+            { id: 1, category: 'system', type: 'CMD', title: 'ตรวจสอบและซ่อมแซมไฟล์ระบบ', command: 'sfc /scannow', description: 'สแกนและซ่อมแซมไฟล์ระบบของ Windows ที่เสียหายหรือหายไป (System File Checker)' },
+            { id: 2, category: 'system', type: 'CMD', title: 'ซ่อมแซม Image ของ Windows', command: 'DISM /Online /Cleanup-Image /RestoreHealth', description: 'ใช้ซ่อมแซม component store ของ Windows เมื่อ sfc ไม่สามารถซ่อมได้ (ต้องต่อเน็ต)' },
+            { id: 3, category: 'system', type: 'CMD', title: 'ล้างไฟล์ชั่วคราวระบบ', command: 'cleanmgr /sagerun:1', description: 'เปิด Disk Cleanup แบบขั้นสูง เพื่อลบไฟล์ขยะและอัปเดตเก่าที่กินพื้นที่' },
+            { id: 22, category: 'system', type: 'CMD', title: 'รีเซ็ต Windows Update (แก้ค้าง/Error)', command: 'net stop wuauserv\nnet stop bits\nren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old\nnet start wuauserv\nnet start bits', description: 'แก้ปัญหา Windows Update ติดค้าง, ดาวน์โหลดไม่สำเร็จ หรือขึ้น Error Code ต่างๆ' },
+            { id: 23, category: 'system', type: 'CMD', title: 'รีสตาร์ท Windows Explorer', command: 'taskkill /F /IM explorer.exe && start explorer.exe', description: 'ใช้เมื่อ Taskbar หาย, ไอคอนบน Desktop ค้าง หรือหน้าจอ Explorer ไม่ตอบสนอง' },
+            
+            // --- Boot & Recovery (NEW) ---
+            { id: 24, category: 'system', type: 'CMD', title: 'ซ่อมแซม Boot Record (เปิดเครื่องไม่ติด)', command: 'bootrec /fixmbr\nbootrec /fixboot\nbootrec /scanos\nbootrec /rebuildbcd', description: 'แก้ปัญหาขึ้นหน้าดำ, "No Bootable Device", หรือ "Windows Boot Manager" เสียหาย (ต้องทำใน Recovery Environment)' },
+
+            // --- Network ---
+            { id: 4, category: 'network', type: 'CMD', title: 'ล้างค่า DNS Cache', command: 'ipconfig /flushdns', description: 'แก้ปัญหาเปิดเว็บบางเว็บไม่ได้ หรือขึ้นหน้าเว็บแปลกๆ เนื่องจากค่า DNS เก่า' },
+            { id: 5, category: 'network', type: 'CMD', title: 'รีเฟรช IP Address', command: 'ipconfig /release && ipconfig /renew', description: 'ปล่อย IP เดิมและขอ IP ใหม่จาก Router (แก้ปัญหาค้างที่ Getting IP address)' },
+            { id: 6, category: 'network', type: 'CMD', title: 'รีเซ็ต Winsock Catalog', command: 'netsh winsock reset', description: 'แก้ปัญหาอินเทอร์เน็ตเชื่อมต่อแต่ใช้งานไม่ได้, โปรแกรมแชทต่อเน็ตไม่ได้ (ต้อง Restart)' },
+            { id: 7, category: 'network', type: 'CMD', title: 'รีเซ็ต TCP/IP', command: 'netsh int ip reset', description: 'คืนค่าการตั้งค่า TCP/IP กลับเป็นค่าเริ่มต้น แก้ปัญหาการเชื่อมต่อเครือข่ายผิดปกติ' },
+            { id: 25, category: 'network', type: 'CMD', title: 'ลบ ARP Cache', command: 'arp -d *', description: 'ล้างตาราง ARP เพื่อแก้ปัญหาการเชื่อมต่อในวง LAN ผิดพลาด หรือ IP Conflict' },
+
+            // --- Disk ---
+            { id: 8, category: 'disk', type: 'CMD', title: 'ตรวจสอบและซ่อม Bad Sector', command: 'chkdsk C: /f /r', description: 'ตรวจสอบดิสก์ แก้ไขข้อผิดพลาด (/f) และกู้คืนข้อมูลจากเซกเตอร์ที่เสีย (/r) *อาจต้องรีสตาร์ท' },
+            { id: 9, category: 'disk', type: 'CMD', title: 'แปลง FAT32 เป็น NTFS', command: 'convert D: /fs:ntfs', description: 'แปลงไดรฟ์ D: (หรือตัวอักษรอื่น) จาก FAT32 เป็น NTFS โดยไม่เสียข้อมูล' },
+            { id: 10, category: 'disk', type: 'CMD', title: 'ล้างดิสก์ทั้งหมด (ระวัง!)', command: 'diskpart\nlist disk\nselect disk X\nclean', description: 'ล้างพาร์ติชันทั้งหมดในดิสก์ที่เลือก (X) ใช้สำหรับเตรียมดิสก์ก่อนลง Windows ใหม่ *ข้อมูลหายหมด' },
+            { id: 26, category: 'disk', type: 'CMD', title: 'เลิกซ่อนไฟล์จากไวรัส (Flash Drive)', command: 'attrib -h -r -s /s /d X:\\*.*', description: 'แก้ปัญหาไฟล์ใน Flash Drive หายหรือถูกซ่อนเป็น System File จากไวรัส (เปลี่ยน X เป็นอักษรไดรฟ์ของ USB)' },
+
+            // --- Hardware ---
+            { id: 11, category: 'hardware', type: 'CMD', title: 'เช็คสถานะสุขภาพฮาร์ดดิสก์', command: 'wmic diskdrive get model,size,status', description: 'แสดงชื่อรุ่น ขนาด และสถานะ SMART (OK = ปกติ, Pred Fail = กำลังจะเสีย)' },
+            { id: 12, category: 'hardware', type: 'CMD', title: 'ดูข้อมูลสเปคเครื่องละเอียด', command: 'systeminfo', description: 'แสดงข้อมูล RAM, CPU, เวอร์ชัน Windows, และเวลาที่ติดตั้งระบบ (Original Install Date)' },
+            { id: 13, category: 'hardware', type: 'CMD', title: 'สร้างรายงานแบตเตอรี่ (Notebook)', command: 'powercfg /batteryreport /output "C:\\battery-report.html"', description: 'สร้างไฟล์ HTML รายงานสุขภาพแบตเตอรี่ ความจุที่ลดลง และประวัติการใช้งาน' },
+            { id: 14, category: 'hardware', type: 'CMD', title: 'ดูข้อมูล RAM', command: 'wmic memorychip get devicelocator,capacity,speed,manufacturer', description: 'ตรวจสอบยี่ห้อ ความเร็ว (Bus) และขนาดของแรมแต่ละแถวว่าตรงกันหรือไม่' },
+
+            // --- User & Permissions ---
+            { id: 15, category: 'user', type: 'CMD', title: 'เปิดใช้งานบัญชี Administrator', command: 'net user administrator /active:yes', description: 'เปิดบัญชี Super Admin ที่ซ่อนอยู่ ใช้สำหรับกู้ระบบหรือรีเซ็ตรหัสผ่านผู้ใช้ปกติ' },
+            { id: 16, category: 'user', type: 'CMD', title: 'เปลี่ยนรหัสผ่านผู้ใช้', command: 'net user "ชื่อผู้ใช้" "รหัสผ่านใหม่"', description: 'รีเซ็ตรหัสผ่านของบัญชีผู้ใช้ท้องถิ่น (Local Account) โดยไม่ต้องรู้รหัสเก่า' },
+            { id: 17, category: 'user', type: 'CMD', title: 'ยึดสิทธิ์เป็นเจ้าของโฟลเดอร์', command: 'takeown /f "C:\\folder" /r /d y', description: 'เข้ายึดสิทธิ์ความเป็นเจ้าของ (Ownership) ของไฟล์หรือโฟลเดอร์ที่เข้าถึงไม่ได้' },
+            { id: 27, category: 'user', type: 'CMD', title: 'รีเซ็ตสิทธิ์การเข้าถึงไฟล์ (Permissions)', command: 'icacls "C:\\folder" /reset /T /C /Q', description: 'คืนค่าสิทธิ์การเข้าถึงไฟล์และโฟลเดอร์กลับเป็นค่าเริ่มต้น (Inherited) สำหรับทุกไฟล์ย่อย (/T)' },
+
+            // --- License & Activation (NEW) ---
+            { id: 28, category: 'system', type: 'CMD', title: 'เช็คสถานะ License Windows', command: 'slmgr /dlv', description: 'แสดงข้อมูลการเปิดใช้งาน Windows อย่างละเอียด เช่น สถานะ, ช่องทางการเปิดใช้งาน (Retail/OEM/KMS), และวันหมดอายุ' },
+            { id: 29, category: 'system', type: 'CMD', title: 'รีเซ็ตตัวจับเวลา Activation', command: 'slmgr /rearm', description: 'รีเซ็ตสถานะการทดลองใช้ Windows กลับเป็น 30 วัน (ใช้ได้จำกัดจำนวนครั้ง) สำหรับกรณีฉุกเฉิน' },
+
+            // --- PowerShell Specific ---
+            { id: 18, category: 'system', type: 'PowerShell', title: 'ลบแอปขยะที่ติดมากับ Windows', command: 'Get-AppxPackage -AllUsers | Remove-AppxPackage', description: 'ลบ Universal Apps (เช่น Xbox, Weather, News) ออกจากระบบทั้งหมด เพื่อลดการใช้งานทรัพยากร' },
+            { id: 19, category: 'system', type: 'PowerShell', title: 'ซ่อมแซม Windows Image (PS)', command: 'Repair-WindowsImage -Online -RestoreHealth', description: 'คำสั่ง PowerShell ที่ทำงานเทียบเท่ากับ DISM /RestoreHealth' },
+            { id: 20, category: 'system', type: 'PowerShell', title: 'รีสตาร์ทบริการที่หยุดทำงาน', command: 'Get-Service | Where-Object {$_.Status -eq "Stopped"} | Start-Service', description: 'ค้นหา Service ทั้งหมดที่สถานะ Stopped และสั่ง Start ให้ทำงานใหม่' },
+            { id: 30, category: 'hardware', type: 'PowerShell', title: 'เช็คไดรเวอร์ที่มีปัญหา (Error)', command: 'Get-PnpDevice | Where-Object {$_.Status -eq "Error"}', description: 'แสดงรายการอุปกรณ์ฮาร์ดแวร์ที่ Windows ตรวจพบข้อผิดพลาด (เครื่องหมายตกใจใน Device Manager)' },
+            { id: 31, category: 'system', type: 'PowerShell', title: 'สร้างจุดคืนค่าระบบ (Restore Point)', command: 'Checkpoint-Computer -Description "Before Repair" -RestorePointType "MODIFY_SETTINGS"', description: 'สร้าง Restore Point อัตโนมัติก่อนเริ่มซ่อมเครื่องลูกค้า เพื่อความปลอดภัยและสามารถย้อนกลับได้' },
+            { id: 21, category: 'network', type: 'PowerShell', title: 'ทดสอบความเร็ว/การเชื่อมต่ออินเทอร์เน็ต', command: 'Test-NetConnection -ComputerName www.google.com -Port 80', description: 'ตรวจสอบการเชื่อมต่อและ Ping ไปยังเซิร์ฟเวอร์ปลายทาง เพื่อดูว่า Port เปิดหรือไม่' },
+            { id: 32, category: 'network', type: 'PowerShell', title: 'ดูรายละเอียดการเชื่อมต่อเครือข่าย', command: 'Get-NetIPAddress -InterfaceAlias Wi-Fi', description: 'แสดง IP Address, Subnet, Default Gateway ของการ์ดเครือข่ายที่ระบุ (เปลี่ยน Wi-Fi เป็น Ethernet ถ้าใช้สาย)' }
+        ];
+
+        let currentCategory = 'all';
+
+        function renderCommands(filterText = '') {
+            const grid = document.getElementById('commandsGrid');
+            const emptyState = document.getElementById('emptyState');
+            grid.innerHTML = '';
+
+            const filtered = commands.filter(cmd => {
+                const matchCategory = currentCategory === 'all' || cmd.category === currentCategory;
+                const matchSearch = cmd.title.toLowerCase().includes(filterText.toLowerCase()) || 
+                                  cmd.description.toLowerCase().includes(filterText.toLowerCase()) ||
+                                  cmd.command.toLowerCase().includes(filterText.toLowerCase());
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                filtered.forEach(cmd => {
+                    const isPS = cmd.type === 'PowerShell';
+                    const badgeColor = isPS ? 'bg-blue-100 text-blue-800 border-blue-200' : 'bg-slate-100 text-slate-800 border-slate-200';
+                    const icon = isPS ? 'fa-brands fa-microsoft' : 'fa-solid fa-terminal';
+                    
+                    const card = document.createElement('div');
+                    card.className = 'command-card bg-white rounded-xl border border-slate-200 p-5 flex flex-col h-full';
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-bold border ${badgeColor} flex items-center gap-1.5">
+                                    <i class="${icon}"></i> ${cmd.type}
+                                </span>
+                                <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">${getCategoryName(cmd.category)}</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">${cmd.title}</h3>
+                        <p class="text-sm text-slate-600 mb-4 flex-grow">${cmd.description}</p>
+                        
+                        <div class="relative group">
+                            <pre class="bg-slate-900 text-tech-100 p-4 rounded-lg text-sm font-mono overflow-x-auto whitespace-pre-wrap break-all border border-slate-700">${escapeHtml(cmd.command)}</pre>
+                            <button onclick="copyToClipboard('${escapeHtml(cmd.command).replace(/'/g, "\\'")}')" 
+                                class="absolute top-2 right-2 bg-white/10 hover:bg-white/20 text-white p-2 rounded-md transition opacity-0 group-hover:opacity-100 focus:opacity-100" title="คัดลอก">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        function getCategoryName(cat) {
+            const names = { 'system': 'System', 'network': 'Network', 'disk': 'Disk', 'hardware': 'Hardware', 'user': 'User' };
+            return names[cat] || cat;
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        function filterCommands(category) {
+            currentCategory = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.className = 'filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-tech-600 text-white shadow-md transition hover:bg-tech-700';
+                } else {
+                    btn.className = 'filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-slate-600 border border-slate-200 shadow-sm transition hover:bg-slate-50';
+                }
+            });
+            renderCommands(document.getElementById('searchInput').value);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderCommands(e.target.value);
+        });
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                navigator.clipboard.writeText(text).then(() => showToast());
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 2000);
+        }
+
+        renderCommands();
+    </script>
+</body>
+</html>
