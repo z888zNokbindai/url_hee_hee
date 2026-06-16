@@ -267,6 +267,13 @@
         .btn-iload { border-color: #00e5ff; color: #00e5ff; }
         .btn-iload:hover { background: #00e5ff; color: #000; box-shadow: 0 0 15px #00e5ff; }
 
+        /* Driver Tools Button - Neon Blue/Purple */
+        .btn-driver { border-color: #4d9fff; color: #4d9fff; }
+        .btn-driver:hover { background: #4d9fff; color: #000; box-shadow: 0 0 15px #4d9fff; }
+        
+        .btn-driver-warn { border-color: #ff9500; color: #ff9500; }
+        .btn-driver-warn:hover { background: #ff9500; color: #000; box-shadow: 0 0 15px #ff9500; }
+
         .disclaimer {
             background: rgba(255, 0, 60, 0.05);
             border: 1px solid var(--neon-red);
@@ -279,6 +286,18 @@
             box-shadow: 0 0 10px rgba(255, 0, 60, 0.1);
         }
         .disclaimer strong { color: var(--neon-red); text-shadow: 0 0 5px rgba(255, 0, 60, 0.5); }
+
+        .warn-box {
+            background: rgba(255, 149, 0, 0.05);
+            border: 1px solid #ff9500;
+            border-left: 4px solid #ff9500;
+            padding: 12px 18px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #ffb84d;
+        }
+        .warn-box strong { color: #ff9500; }
 
         footer {
             text-align: center;
@@ -392,7 +411,7 @@
     </header>
 
     <!-- Search Bar -->
-    <input type="text" id="searchInput" class="search-box" onkeyup="filterTools()" placeholder="🔍 ค้นหาโปรแกรม... เช่น WinPE, Ventoy, CrystalDisk, Network, Torrent">
+    <input type="text" id="searchInput" class="search-box" onkeyup="filterTools()" placeholder="🔍 ค้นหาโปรแกรม... เช่น WinPE, Ventoy, CrystalDisk, Network, Torrent, Driver">
 
     <!-- Quick Navigation -->
     <div class="quick-nav">
@@ -401,6 +420,7 @@
         <a href="#boot">🔧 Boot Tools</a>
         <a href="#backup">💾 Backup</a>
         <a href="#hardware">🔬 Hardware</a>
+        <a href="#driver">🔌 Drivers</a>
         <a href="#network">🌐 Network</a>
         <a href="#clean">🧹 Clean/Optimize</a>
         <a href="#sysutil">⚙️ System Utils</a>
@@ -552,6 +572,33 @@
                     <div class="item-desc">มาตรฐานเทส RAM ว่าเสียหรือไม่ ทำการบูตผ่าน USB เพื่อทดสอบความจำแบบลึก (ต้องเตรียม USB บูตเอง)</div>
                 </div>
                 <a href="https://www.memtest86.com/download.htm" target="_blank" class="btn-download btn-hw">ไปที่หน้าโหลด</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- หมวดหมู่: เครื่องมือจัดการ Driver (ใหม่!) -->
+    <div class="category" id="driver">
+        <div class="category-title">🔌 เครื่องมือจัดการ Driver (Driver Management)</div>
+        <ul class="download-list">
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">Snappy Driver Installer Origin (SDIO)</div>
+                    <div class="item-desc">เครื่องมือติดตั้ง Driver Offline ระดับตำนานของช่างคอม Open-source 100% ไม่มีโฆษณา ไม่มีแถมโปรแกรมขยะ รองรับ Windows 7/8/10/11 มีทั้งเวอร์ชัน Lite (โหลดเฉพาะ driver ที่ขาด) และ Full (มี driver ทั้งหมดในเครื่อง ~35GB)</div>
+                    <div class="warn-box">
+                        <strong>💡 คำแนะนำ:</strong> ใช้เวอร์ชัน <strong>Origin</strong> (sdi-tool.org) เท่านั้น ไม่ใช่เวอร์ชัน fork อื่นที่อาจมีโฆษณาแฝง
+                    </div>
+                </div>
+                <a href="https://sdi-tool.org/" target="_blank" class="btn-download btn-driver">ไปที่หน้าเว็บ (Official)</a>
+            </li>
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">IObit Driver Booster Free</div>
+                    <div class="item-desc">โปรแกรมอัปเดต Driver อัตโนมัติยอดนิยม สแกนหา driver ที่ล้าสมัยแล้วดาวน์โหลดเวอร์ชันใหม่ให้ทันที ใช้งานง่าย เหมาะกับผู้ใช้งานทั่วไปที่ไม่ถนัด IT</div>
+                    <div class="warn-box">
+                        <strong>⚠️ คำเตือน:</strong> ตอนติดตั้งให้เลือก <strong>Custom Install</strong> และ <strong>ยกเลิกติ๊กถูก</strong> ทุกช่องที่เสนอให้ติดตั้งโปรแกรมเพิ่มเติม (เช่น IObit Software Updater, Protected Browsing) เพื่อป้องกัน Adware/Bloatware
+                    </div>
+                </div>
+                <a href="https://www.iobit.com/en/driver-booster.php" target="_blank" class="btn-download btn-driver-warn">ไปที่หน้าโหลด</a>
             </li>
         </ul>
     </div>
