@@ -6,7 +6,6 @@
     <title>ศูนย์ดาวน์โหลดไฟล์จำเป็น (IT Toolbox Download Center)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Nord Theme Color Palette */
         :root {
             --nord0: #2E3440;
             --nord1: #3B4252;
@@ -232,6 +231,18 @@
         .btn-driver-warn { border-color: var(--nord12); color: var(--nord12); }
         .btn-driver-warn:hover { background: var(--nord12); color: var(--nord0); box-shadow: 0 2px 8px rgba(208, 135, 112, 0.3); }
 
+        /* ปุ่มพิเศษสำหรับสคริปต์ของฉัน */
+        .btn-my-script { 
+            border-color: var(--nord13); 
+            color: var(--nord13); 
+            background: rgba(235, 203, 139, 0.05);
+        }
+        .btn-my-script:hover { 
+            background: var(--nord13); 
+            color: var(--nord0); 
+            box-shadow: 0 2px 8px rgba(235, 203, 139, 0.3); 
+        }
+
         .disclaimer {
             background: rgba(191, 97, 106, 0.1);
             border: 1px solid var(--nord11);
@@ -364,7 +375,7 @@
         <p>คลังลิงก์ดาวน์โหลด OS, แผ่นกู้ระบบ WinPE, เครื่องมือวิเคราะห์ฮาร์ดแวร์, สคริปต์ระบบ และโปรแกรมสามัญประจำเครื่อง</p>
     </header>
 
-    <input type="text" id="searchInput" class="search-box" onkeyup="filterTools()" placeholder="🔍 ค้นหาโปรแกรม... เช่น WinPE, Ventoy, Partition, Recovery, RustDesk, Driver">
+    <input type="text" id="searchInput" class="search-box" onkeyup="filterTools()" placeholder="🔍 ค้นหาโปรแกรม... เช่น WinPE, Ventoy, Partition, Recovery, RustDesk, Driver, CMD, PowerShell">
 
     <div class="quick-nav">
         <a href="#os">💿 OS</a>
@@ -478,7 +489,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่ใหม่ A2: Partition Manager -->
     <div class="category" id="partition">
         <div class="category-title">🗂️ เครื่องมือจัดการพาร์ทิชัน (Partition Manager)</div>
         <ul class="download-list">
@@ -506,7 +516,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่ใหม่ A3: Data Recovery -->
     <div class="category" id="recovery">
         <div class="category-title">💾 กู้คืนข้อมูลที่สูญหาย (Data Recovery)</div>
         <ul class="download-list">
@@ -642,7 +651,6 @@
         </ul>
     </div>
 
-    <!-- หมวดหมู่ใหม่ A5: Remote Desktop เพิ่มเติม -->
     <div class="category" id="remote">
         <div class="category-title">🖥️ โปรแกรมรีโมทและซัพพอร์ตทางไกล (Remote Desktop & Support)</div>
         <ul class="download-list">
@@ -720,6 +728,14 @@
                     <div class="item-desc">ชุดユーทิลิตี้จาก Microsoft เพิ่มฟีเจอร์ขั้นสูงให้ Windows เช่น PowerRename, FancyZones, Color Picker, Keyboard Manager</div>
                 </div>
                 <a href="https://github.com/microsoft/PowerToys/releases" target="_blank" class="btn-download btn-gh">ไปที่หน้าโหลด (GitHub)</a>
+            </li>
+            <!-- ✨ รายการใหม่: สคริปต์ CMD/PowerShell ของคุณ -->
+            <li class="download-item">
+                <div class="item-info">
+                    <div class="item-title">📜 CMD & PowerShell Scripts Collection</div>
+                    <div class="item-desc">คลังสคริปต์ CMD และ PowerShell อเนกประสงค์ สำหรับจัดการระบบ ปรับแต่ง Windows และทำงานอัตโนมัติ รวบรวมและทดสอบโดยช่างไอที</div>
+                </div>
+                <a href="https://z888znokbindai.github.io/url_hee_hee/cmd_ps" target="_blank" class="btn-download btn-my-script">📜 ดูสคริปต์</a>
             </li>
         </ul>
     </div>
