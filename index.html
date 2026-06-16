@@ -37,30 +37,30 @@
             line-height: 1.6;
         }
 
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: var(--nord0); }
-        ::-webkit-scrollbar-thumb { background: var(--nord3); border-radius: 4px; }
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--nord1); }
+        ::-webkit-scrollbar-thumb { background: var(--nord3); border-radius: 6px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--nord9); }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 30px;
-            background: linear-gradient(145deg, var(--nord1), var(--nord2));
+            margin-bottom: 40px;
+            background: var(--nord1);
             border: 1px solid var(--nord3);
             color: var(--nord6);
             padding: 40px 20px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
         header h1 { 
             margin: 0; 
-            font-size: 32px; 
+            font-size: 28px; 
             font-weight: 700;
             color: var(--nord8);
             letter-spacing: 0.5px;
@@ -68,271 +68,241 @@
         header p { 
             margin: 12px 0 0 0; 
             color: var(--nord4); 
-            font-size: 16px; 
-            font-weight: 300;
-        }
-
-        .search-container {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--nord0);
-            padding: 20px 0 10px 0;
+            font-size: 15px; 
+            font-weight: 400;
         }
 
         .search-box {
             width: 100%;
-            padding: 16px 24px;
+            padding: 14px 20px;
             border: 2px solid var(--nord3);
-            border-radius: 12px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 15px;
             font-family: 'Prompt', sans-serif;
+            margin-bottom: 25px;
             background: var(--nord1);
             color: var(--nord6);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.2s;
         }
         .search-box::placeholder { color: var(--nord3); }
         .search-box:focus {
             outline: none;
             border-color: var(--nord8);
             background: var(--nord2);
-            box-shadow: 0 6px 20px rgba(136, 192, 208, 0.15);
         }
 
         .quick-nav {
-            position: sticky;
-            top: 85px;
-            z-index: 99;
-            background: rgba(59, 66, 82, 0.95);
-            backdrop-filter: blur(10px);
+            background: var(--nord1);
             border: 1px solid var(--nord3);
-            padding: 12px 20px;
-            border-radius: 12px;
-            margin-bottom: 40px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
             display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            white-space: nowrap;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
         }
-        
-        /* ซ่อน Scrollbar สำหรับ Quick Nav */
-        .quick-nav::-webkit-scrollbar { display: none; }
-        .quick-nav { -ms-overflow-style: none; scrollbar-width: none; }
-
         .quick-nav a {
             display: inline-block;
-            padding: 8px 16px;
+            padding: 6px 14px;
             color: var(--nord4);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             border: 1px solid var(--nord3);
-            border-radius: 8px;
+            border-radius: 6px;
             background: var(--nord2);
             transition: all 0.2s;
-            flex-shrink: 0;
         }
         .quick-nav a:hover {
             background: var(--nord8);
             color: var(--nord0);
             border-color: var(--nord8);
-            transform: translateY(-2px);
         }
 
         .category {
-            margin-bottom: 40px;
-            scroll-margin-top: 150px;
-        }
-        
-        .category-title {
-            font-size: 22px;
-            color: var(--nord8);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--nord3);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* เปลี่ยนเป็น Grid Layout สำหรับ Card */
-        .download-grid { 
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
-        }
-
-        .download-item {
             background: var(--nord1);
             border: 1px solid var(--nord3);
-            border-top: 4px solid var(--nord8);
-            padding: 24px;
-            border-radius: 12px;
+            border-left: 4px solid var(--nord8);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
+            scroll-margin-top: 20px;
+        }
+        .category:hover {
+            border-color: var(--nord9);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+        .category-title {
+            font-size: 18px;
+            color: var(--nord8);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--nord3);
+            padding-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .download-list { list-style: none; padding: 0; margin: 0; }
+        .download-item {
             display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--nord2);
+            transition: background 0.2s;
         }
         .download-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--nord9);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(136, 192, 208, 0.05);
         }
-
-        .item-info { flex-grow: 1; margin-bottom: 20px; }
+        .download-item:last-child { border-bottom: none; }
+        .item-info { flex: 1; padding-right: 20px; }
         .item-title { 
             font-weight: 600; 
-            font-size: 18px; 
+            font-size: 16px; 
             color: var(--nord6); 
-            margin-bottom: 10px; 
-            line-height: 1.4;
+            margin-bottom: 6px; 
         }
-        .item-desc { 
-            font-size: 14px; 
-            color: var(--nord4); 
-            margin: 0; 
-            font-weight: 300; 
-            line-height: 1.6; 
-        }
+        .item-desc { font-size: 14px; color: var(--nord4); margin: 0; font-weight: 400; line-height: 1.5; }
 
         .btn-download {
-            display: block;
-            width: 100%;
-            text-align: center;
             background: var(--nord2);
             color: var(--nord8);
             text-decoration: none;
-            padding: 12px 20px;
+            padding: 8px 18px;
             border: 1px solid var(--nord8);
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 6px;
+            font-size: 13px;
             font-weight: 600;
+            white-space: nowrap;
             transition: all 0.2s;
             font-family: 'Prompt', sans-serif;
-            margin-top: auto;
         }
-        
         .btn-download:hover { 
             background: var(--nord8); 
             color: var(--nord0);
-            box-shadow: 0 4px 12px rgba(136, 192, 208, 0.3);
+            box-shadow: 0 2px 8px rgba(136, 192, 208, 0.3);
         }
 
-        /* Color classes สำหรับปุ่ม (ปรับให้เข้ากับ Card) */
         .btn-ms { border-color: var(--nord14); color: var(--nord14); }
-        .btn-ms:hover { background: var(--nord14); color: var(--nord0); box-shadow: 0 4px 12px rgba(163, 190, 140, 0.3); }
+        .btn-ms:hover { background: var(--nord14); color: var(--nord0); box-shadow: 0 2px 8px rgba(163, 190, 140, 0.3); }
         
         .btn-pe { border-color: var(--nord13); color: var(--nord13); }
-        .btn-pe:hover { background: var(--nord13); color: var(--nord0); box-shadow: 0 4px 12px rgba(235, 203, 139, 0.3); }
+        .btn-pe:hover { background: var(--nord13); color: var(--nord0); box-shadow: 0 2px 8px rgba(235, 203, 139, 0.3); }
         
         .btn-tool { border-color: var(--nord11); color: var(--nord11); }
-        .btn-tool:hover { background: var(--nord11); color: var(--nord6); box-shadow: 0 4px 12px rgba(191, 97, 106, 0.3); }
+        .btn-tool:hover { background: var(--nord11); color: var(--nord6); box-shadow: 0 2px 8px rgba(191, 97, 106, 0.3); }
         
         .btn-hw { border-color: var(--nord7); color: var(--nord7); }
-        .btn-hw:hover { background: var(--nord7); color: var(--nord0); box-shadow: 0 4px 12px rgba(143, 188, 187, 0.3); }
+        .btn-hw:hover { background: var(--nord7); color: var(--nord0); box-shadow: 0 2px 8px rgba(143, 188, 187, 0.3); }
         
         .btn-net { border-color: var(--nord15); color: var(--nord15); }
-        .btn-net:hover { background: var(--nord15); color: var(--nord6); box-shadow: 0 4px 12px rgba(180, 142, 173, 0.3); }
+        .btn-net:hover { background: var(--nord15); color: var(--nord6); box-shadow: 0 2px 8px rgba(180, 142, 173, 0.3); }
         
         .btn-clean { border-color: var(--nord14); color: var(--nord14); }
-        .btn-clean:hover { background: var(--nord14); color: var(--nord0); box-shadow: 0 4px 12px rgba(163, 190, 140, 0.3); }
+        .btn-clean:hover { background: var(--nord14); color: var(--nord0); box-shadow: 0 2px 8px rgba(163, 190, 140, 0.3); }
         
         .btn-gh { border-color: var(--nord6); color: var(--nord6); }
-        .btn-gh:hover { background: var(--nord6); color: var(--nord0); box-shadow: 0 4px 12px rgba(236, 239, 244, 0.3); }
+        .btn-gh:hover { background: var(--nord6); color: var(--nord0); box-shadow: 0 2px 8px rgba(236, 239, 244, 0.3); }
         
         .btn-ninite { border-color: var(--nord15); color: var(--nord15); }
-        .btn-ninite:hover { background: var(--nord15); color: var(--nord6); box-shadow: 0 4px 12px rgba(180, 142, 173, 0.3); }
+        .btn-ninite:hover { background: var(--nord15); color: var(--nord6); box-shadow: 0 2px 8px rgba(180, 142, 173, 0.3); }
         
-        .btn-orange, .btn-driver-warn { border-color: var(--nord12); color: var(--nord12); }
-        .btn-orange:hover, .btn-driver-warn:hover { background: var(--nord12); color: var(--nord0); box-shadow: 0 4px 12px rgba(208, 135, 112, 0.3); }
+        .btn-orange { border-color: var(--nord12); color: var(--nord12); }
+        .btn-orange:hover { background: var(--nord12); color: var(--nord0); box-shadow: 0 2px 8px rgba(208, 135, 112, 0.3); }
         
-        .btn-dark { border-color: var(--nord4); color: var(--nord4); }
-        .btn-dark:hover { background: var(--nord4); color: var(--nord0); box-shadow: 0 4px 12px rgba(216, 222, 233, 0.3); }
+        .btn-dark { border-color: var(--nord3); color: var(--nord4); }
+        .btn-dark:hover { background: var(--nord3); color: var(--nord6); box-shadow: 0 2px 8px rgba(76, 86, 106, 0.3); }
         
         .btn-torrent { border-color: var(--nord11); color: var(--nord11); }
-        .btn-torrent:hover { background: var(--nord11); color: var(--nord6); box-shadow: 0 4px 12px rgba(191, 97, 106, 0.3); }
+        .btn-torrent:hover { background: var(--nord11); color: var(--nord6); box-shadow: 0 2px 8px rgba(191, 97, 106, 0.3); }
         
         .btn-pirate { border-color: var(--nord13); color: var(--nord13); }
-        .btn-pirate:hover { background: var(--nord13); color: var(--nord0); box-shadow: 0 4px 12px rgba(235, 203, 139, 0.3); }
+        .btn-pirate:hover { background: var(--nord13); color: var(--nord0); box-shadow: 0 2px 8px rgba(235, 203, 139, 0.3); }
         
         .btn-iload { border-color: var(--nord9); color: var(--nord9); }
-        .btn-iload:hover { background: var(--nord9); color: var(--nord0); box-shadow: 0 4px 12px rgba(129, 161, 193, 0.3); }
+        .btn-iload:hover { background: var(--nord9); color: var(--nord0); box-shadow: 0 2px 8px rgba(129, 161, 193, 0.3); }
 
         .btn-driver { border-color: var(--nord10); color: var(--nord10); }
-        .btn-driver:hover { background: var(--nord10); color: var(--nord6); box-shadow: 0 4px 12px rgba(94, 129, 172, 0.3); }
+        .btn-driver:hover { background: var(--nord10); color: var(--nord6); box-shadow: 0 2px 8px rgba(94, 129, 172, 0.3); }
+        
+        .btn-driver-warn { border-color: var(--nord12); color: var(--nord12); }
+        .btn-driver-warn:hover { background: var(--nord12); color: var(--nord0); box-shadow: 0 2px 8px rgba(208, 135, 112, 0.3); }
 
-        .disclaimer, .warn-box {
-            background: rgba(191, 97, 106, 0.05);
+        .disclaimer {
+            background: rgba(191, 97, 106, 0.1);
             border: 1px solid var(--nord11);
             border-left: 4px solid var(--nord11);
-            padding: 16px 20px;
-            border-radius: 8px;
-            margin-bottom: 24px;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
             font-size: 14px;
             color: var(--nord4);
         }
-        .warn-box {
-            background: rgba(208, 135, 112, 0.05);
-            border-color: var(--nord12);
-            margin-top: 15px;
-            margin-bottom: 0;
-            padding: 12px 16px;
-        }
         .disclaimer strong { color: var(--nord11); font-weight: 600; }
+
+        .warn-box {
+            background: rgba(208, 135, 112, 0.1);
+            border: 1px solid var(--nord12);
+            border-left: 4px solid var(--nord12);
+            padding: 12px 18px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: var(--nord4);
+        }
         .warn-box strong { color: var(--nord12); font-weight: 600; }
 
         footer {
             text-align: center;
             margin-top: 60px;
-            padding: 40px 20px;
+            padding: 30px;
             font-size: 14px;
             color: var(--nord4);
             background: var(--nord1);
-            border-top: 4px solid var(--nord8);
-            border-radius: 12px;
+            border-top: 3px solid var(--nord8);
+            border-radius: 8px;
+            box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
         }
         footer .warn {
             background: rgba(191, 97, 106, 0.1);
             border: 1px solid var(--nord11);
             color: var(--nord4);
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 24px;
-            display: inline-block;
-            text-align: left;
-            max-width: 600px;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
         footer .warn a { color: var(--nord11); text-decoration: none; font-weight: 600; }
         footer .warn a:hover { text-decoration: underline; }
 
         .no-results {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px;
             color: var(--nord11);
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             display: none;
             border: 2px dashed var(--nord3);
-            border-radius: 12px;
+            border-radius: 8px;
             background: var(--nord1);
-            margin-top: 20px;
         }
 
         .back-to-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--nord8);
-            color: var(--nord0);
-            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: var(--nord1);
+            color: var(--nord8);
+            border: 2px solid var(--nord8);
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -348,19 +318,42 @@
             transform: translateY(0);
         }
         .back-to-top:hover {
-            background: var(--nord9);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(136, 192, 208, 0.4);
+            background: var(--nord8);
+            color: var(--nord0);
+            box-shadow: 0 6px 16px rgba(136, 192, 208, 0.4);
+            transform: translateY(-2px);
         }
-        .back-to-top svg { width: 24px; height: 24px; fill: currentColor; }
+        .back-to-top svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+        .back-to-top .tooltip {
+            position: absolute;
+            right: 60px;
+            background: var(--nord1);
+            color: var(--nord8);
+            border: 1px solid var(--nord8);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+        .back-to-top:hover .tooltip { opacity: 1; }
 
-        @media (max-width: 768px) {
-            .download-grid { grid-template-columns: 1fr; }
-            header h1 { font-size: 24px; }
-            .quick-nav { top: 75px; border-radius: 8px; }
-            .container { padding: 20px 15px; }
+        @media (max-width: 600px) {
+            .download-item { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .btn-download { width: 100%; text-align: center; }
             .back-to-top { width: 44px; height: 44px; bottom: 20px; right: 20px; }
+            .back-to-top .tooltip { display: none; }
+            header h1 { font-size: 22px; }
+            .container { margin: 20px auto; padding: 15px; }
         }
+        a { text-decoration: none; }
     </style>
 </head>
 <body>
@@ -369,12 +362,9 @@
     <header>
         <h1>🛠️ IT TOOLBOX DOWNLOAD CENTER</h1>
         <p>คลังลิงก์ดาวน์โหลด OS, แผ่นกู้ระบบ WinPE, เครื่องมือวิเคราะห์ฮาร์ดแวร์, สคริปต์ระบบ และโปรแกรมสามัญประจำเครื่อง</p>
-        <a href="https://z888znokbindai.github.io/url_hee_hee/cmd_ps"> CMD and PS </a>
     </header>
-    
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" onkeyup="filterTools()" placeholder="🔍 ค้นหาโปรแกรม... เช่น WinPE, Ventoy, Partition, Recovery, RustDesk, Driver">
-    </div>
+
+    <input type="text" id="searchInput" class="search-box" onkeyup="filterTools()" placeholder="🔍 ค้นหาโปรแกรม... เช่น WinPE, Ventoy, Partition, Recovery, RustDesk, Driver">
 
     <div class="quick-nav">
         <a href="#os">💿 OS</a>
@@ -395,205 +385,207 @@
     </div>
 
     <div class="category" id="os">
-        <h2 class="category-title">💿 ระบบปฏิบัติการ Windows (Official Links)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">💿 ระบบปฏิบัติการ Windows (Official Links)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Windows 11 (Official ISO / Media Creation Tool)</div>
                     <div class="item-desc">ลิงก์ตรงจาก Microsoft สำหรับดาวน์โหลดตัวติดตั้ง Windows 11 ล่าสุด รองรับ TPM 2.0 และ Secure Boot</div>
                 </div>
                 <a href="https://www.microsoft.com/software-download/windows11" target="_blank" class="btn-download btn-ms">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Windows 10 (Official ISO / Media Creation Tool)</div>
                     <div class="item-desc">ลิงก์ตรงจาก Microsoft สำหรับสร้างแฟลชไดรฟ์ติดตั้ง Windows 10 (รองรับถึงปี 2025+)</div>
                 </div>
                 <a href="https://www.microsoft.com/software-download/windows10" target="_blank" class="btn-download btn-ms">ไปที่หน้าโหลด</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="winpe">
-        <h2 class="category-title">🛡️ แผ่นกู้ภัยและวินโดวส์จำลอง (WinPE / Diagnostic Boot)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">🛡️ แผ่นกู้ภัยและวินโดวส์จำลอง (WinPE / Diagnostic Boot)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">WinPE Sergei Strelec (English Version 2026)</div>
                     <div class="item-desc">สุดยอดแผ่นบูตกู้ระบบสารพัดประโยชน์ อัปเดตแพทช์ปี 2026 รวมโปรแกรมเช็คเครื่อง ล้างไวรัส และกู้ข้อมูลครบครันที่สุด</div>
                 </div>
                 <a href="https://sergeistrelec.name/winpe-10-8-sergei-strelec-english/282-winpe-11-10-sergei-strelec-x64-20260511-english-version.html" target="_blank" class="btn-download btn-pe">ไปที่หน้าโหลด (Official)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Hiren's BootCD PE (Preinstallation Environment)</div>
                     <div class="item-desc">แผ่นกู้ระบบในตำนานที่ถูกนำมารีบูตใหม่บนฐานของ Windows 11/10 PE 64-bit รองรับ UEFI เต็มรูปแบบ ปลอดภัย ไม่มีโปรแกรมละเมิดลิขสิทธิ์</div>
                 </div>
                 <a href="https://www.hirensbootcd.org/download/" target="_blank" class="btn-download btn-pe">ไปที่หน้าโหลด (Official)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">DLC Boot</div>
                     <div class="item-desc">แผ่นเครื่องมือกู้ระบบเอนกประสงค์ยอดนิยม มีทั้ง Mini Windows และโปรแกรมปรับแต่ง จัดการฮาร์ดดิสก์ และกู้คืนรหัสผ่านหน้าจอ</div>
                 </div>
                 <a href="https://dlcboot.com/" target="_blank" class="btn-download btn-pe">ไปที่หน้าโหลด (Official)</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="boot">
-        <h2 class="category-title">🛠️ เครื่องมือสร้างตัวบูตระบบ (Bootable Tools)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">🛠️ เครื่องมือสร้างตัวบูตระบบ (Bootable Tools)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Ventoy</div>
                     <div class="item-desc">เครื่องมือทำ Multiboot Flash Drive แค่ฟอร์แมตครั้งเดียวแล้วลากไฟล์ ISO (Windows/Linux/WinPE/Rescuezilla) มาวางก็บูตได้ทันที</div>
                 </div>
                 <a href="https://github.com/ventoy/Ventoy/releases" target="_blank" class="btn-download btn-gh">ไปที่หน้าโหลด (GitHub)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">iVentoy</div>
                     <div class="item-desc">ระบบจำลอง PXE Server สำหรับสั่งบูตเครื่องและลง Windows/WinPE ผ่านระบบ LAN (Network Boot) โดยไม่ต้องเสียบ Flash Drive</div>
                 </div>
                 <a href="https://www.iventoy.com/en/download.html" target="_blank" class="btn-download btn-tool">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Rufus</div>
                     <div class="item-desc">โปรแกรมเขียนไฟล์ ISO ลง Flash Drive ที่ทำงานได้รวดเร็ว แม่นยำ เหมาะสำหรับสร้างตัวติดตั้งเดี่ยวๆ หรือปรับแต่งข้ามข้อจำกัด TPM ของ Win11</div>
                 </div>
                 <a href="https://github.com/pbatard/rufus/releases" target="_blank" class="btn-download btn-gh">ไปที่หน้าโหลด (GitHub)</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="backup">
-        <h2 class="category-title">💾 เครื่องมือสำรองข้อมูลและจัดการดิสก์ (Backup & Disk Tools)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">💾 เครื่องมือสำรองข้อมูลและจัดการดิสก์ (Backup & Disk Tools)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Rescuezilla (The Open Source Clonezilla)</div>
                     <div class="item-desc">เครื่องมือทำอิมเมจระบบ (Disk Cloning) และสำรองข้อมูลแบบ Open-source ใช้งานง่ายด้วยหน้าต่าง GUI คล้ายโปรแกรมดังในอดีตอย่าง Norton Ghost หรือ Acronis</div>
                 </div>
                 <a href="https://rescuezilla.com/download" target="_blank" class="btn-download btn-orange">ไปที่หน้าโหลด (Official)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Macrium Reflect Free (Trial)</div>
                     <div class="item-desc">เครื่องมือสำรองข้อมูลและ Clone Disk ระดับมืออาชีพ รองรับ Incremental Backup และ Image Backup ที่น่าเชื่อถือสูง</div>
                 </div>
                 <a href="https://www.macrium.com/reflectfree" target="_blank" class="btn-download btn-orange">ไปที่หน้าโหลด</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
+    <!-- หมวดหมู่ใหม่ A2: Partition Manager -->
     <div class="category" id="partition">
-        <h2 class="category-title">🗂️ เครื่องมือจัดการพาร์ทิชัน (Partition Manager)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">🗂️ เครื่องมือจัดการพาร์ทิชัน (Partition Manager)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">GParted Live</div>
                     <div class="item-desc">โปรแกรมจัดการพาร์ทิชันแบบ Open-source ระดับตำนาน รันผ่าน USB ได้โดยตรง รองรับการย่อ/ขยาย/ย้าย พาร์ทิชัน Linux และ Windows ได้อย่างปลอดภัย</div>
                 </div>
                 <a href="https://gparted.org/liveusb.php" target="_blank" class="btn-download btn-hw">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">MiniTool Partition Wizard Free</div>
                     <div class="item-desc">โปรแกรมจัดการดิสก์แบบ GUI ที่ใช้งานง่ายยอดนิยม สำหรับย่อ ขยาย หรือรวมพาร์ทิชันใน Windows โดยไม่เสียข้อมูล (มีข้อจำกัดในเวอร์ชันฟรี)</div>
                 </div>
                 <a href="https://www.minitool.com/partition-manager/partition-wizard-home.html" target="_blank" class="btn-download btn-orange">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">AOMEI Partition Assistant Standard</div>
                     <div class="item-desc">ทางเลือกฟรีที่ทรงพลังอีกตัวหนึ่ง รองรับการโคลนดิสก์ ย้าย OS ไป SSD และจัดการพาร์ทิชันพื้นฐานได้ครบถ้วน</div>
                 </div>
                 <a href="https://www.aomeitech.com/partition-manager.html" target="_blank" class="btn-download btn-orange">ไปที่หน้าโหลด</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
+    <!-- หมวดหมู่ใหม่ A3: Data Recovery -->
     <div class="category" id="recovery">
-        <h2 class="category-title">💾 กู้คืนข้อมูลที่สูญหาย (Data Recovery)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">💾 กู้คืนข้อมูลที่สูญหาย (Data Recovery)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Recuva</div>
                     <div class="item-desc">โปรแกรมกู้ไฟล์ที่ลบผิดหรือฟอร์แมตผิดจากค่าย CCleaner ใช้งานง่าย ฟรี และรองรับการกู้ไฟล์จาก HDD, SSD, USB และ Memory Card</div>
                 </div>
                 <a href="https://www.ccleaner.com/recuva/download" target="_blank" class="btn-download btn-clean">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">TestDisk & PhotoRec</div>
                     <div class="item-desc">เครื่องมือกู้ข้อมูลระดับลึกแบบ Open-source (Command Line) ทรงพลังมาก สามารถกู้พาร์ทิชันที่หายและไฟล์รูปภาพ/เอกสารได้แม้โครงสร้างไฟล์เสียหาย</div>
                 </div>
                 <a href="https://www.cgsecurity.org/wiki/TestDisk_Download" target="_blank" class="btn-download btn-gh">ไปที่หน้าโหลด (GitHub)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">EaseUS Data Recovery Wizard Free</div>
                     <div class="item-desc">โปรแกรมกู้ข้อมูลแบบ GUI ที่สแกนได้ลึกและแสดงผลเป็นหมวดหมู่ชัดเจน (เวอร์ชันฟรีจำกัดปริมาณการกู้ที่ 2GB)</div>
                 </div>
                 <a href="https://www.easeus.com/data-recovery-software.htm" target="_blank" class="btn-download btn-orange">ไปที่หน้าโหลด</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="hardware">
-        <h2 class="category-title">🔬 วิเคราะห์ฮาร์ดแวร์และสเปก (Hardware & Diagnostics)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">🔬 วิเคราะห์ฮาร์ดแวร์และสเปก (Hardware & Diagnostics)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">WizTree</div>
                     <div class="item-desc">สแกนหาไฟล์และโฟลเดอร์ที่กินพื้นที่ฮาร์ดดิสก์เร็วระดับสายฟ้าแลบ (เร็วกว่า WinDirStat หลายเท่า) แสดงผลแบบ Treemap ดูง่าย</div>
                 </div>
                 <a href="https://diskanalyzer.com/download" target="_blank" class="btn-download btn-hw">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">CrystalDiskInfo</div>
                     <div class="item-desc">เช็คสุขภาพ SSD/HDD ผ่านค่า S.M.A.R.T. บอกสถานะว่าดิสก์ใกล้พังหรือยัง พร้อมแสดงอุณหภูมิและชั่วโมงการใช้งาน</div>
                 </div>
                 <a href="https://crystalmark.info/en/software/crystaldiskinfo/" target="_blank" class="btn-download btn-hw">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">CrystalDiskMark</div>
                     <div class="item-desc">โปรแกรมทดสอบความเร็วในการอ่าน-เขียนของ SSD/HDD/USB Flash Drive มาตรฐานที่ช่างไอทีใช้ทั่วโลก</div>
                 </div>
                 <a href="https://crystalmark.info/en/software/crystaldiskmark/" target="_blank" class="btn-download btn-hw">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">HWiNFO</div>
                     <div class="item-desc">ดูสเปกเครื่องเชิงลึกแบบ Real-time Monitoring แสดงอุณหภูมิแรงดันไฟ CPU/GPU/Mainboard ครบทุกเซนเซอร์</div>
                 </div>
                 <a href="https://www.hwinfo.com/download/" target="_blank" class="btn-download btn-hw">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">CPU-Z / GPU-Z</div>
                     <div class="item-desc">เครื่องมือดูสเปก CPU, Mainboard, RAM และ GPU แบบละเอียดจาก CPUID ใช้เช็คสเปกจริงว่าตรงปกหรือไม่</div>
                 </div>
                 <a href="https://www.cpuid.com/softwares.html" target="_blank" class="btn-download btn-hw">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">MemTest86</div>
                     <div class="item-desc">มาตรฐานเทส RAM ว่าเสียหรือไม่ ทำการบูตผ่าน USB เพื่อทดสอบความจำแบบลึก (ต้องเตรียม USB บูตเอง)</div>
                 </div>
                 <a href="https://www.memtest86.com/download.htm" target="_blank" class="btn-download btn-hw">ไปที่หน้าโหลด</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="driver">
-        <h2 class="category-title">🔌 เครื่องมือจัดการ Driver (Driver Management)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">🔌 เครื่องมือจัดการ Driver (Driver Management)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Snappy Driver Installer Origin (SDIO)</div>
                     <div class="item-desc">เครื่องมือติดตั้ง Driver Offline ระดับตำนานของช่างคอม Open-source 100% ไม่มีโฆษณา ไม่มีแถมโปรแกรมขยะ รองรับ Windows 7/8/10/11 มีทั้งเวอร์ชัน Lite และ Full</div>
@@ -602,8 +594,8 @@
                     </div>
                 </div>
                 <a href="https://sdi-tool.org/" target="_blank" class="btn-download btn-driver">ไปที่หน้าเว็บ (Official)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">IObit Driver Booster Free</div>
                     <div class="item-desc">โปรแกรมอัปเดต Driver อัตโนมัติยอดนิยม สแกนหา driver ที่ล้าสมัยแล้วดาวน์โหลดเวอร์ชันใหม่ให้ทันที ใช้งานง่าย</div>
@@ -612,221 +604,222 @@
                     </div>
                 </div>
                 <a href="https://www.iobit.com/en/driver-booster.php" target="_blank" class="btn-download btn-driver-warn">ไปที่หน้าโหลด</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="network">
-        <h2 class="category-title">🌐 เครื่องมือระบบเครือข่าย (Network Tools)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">🌐 เครื่องมือระบบเครือข่าย (Network Tools)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Advanced IP Scanner</div>
                     <div class="item-desc">สแกนวง LAN ดู IP ของทุกเครื่องในเครือข่าย เครื่องพิมพ์ และ Shared Folder พร้อมเปิด Remote Desktop / RDP ได้ทันที</div>
                 </div>
                 <a href="https://www.advanced-ip-scanner.com/th/" target="_blank" class="btn-download btn-net">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">PuTTY</div>
                     <div class="item-desc">SSH และ Telnet Client ระดับตำนาน สำหรับรีโมทเข้า Server, Router, Switch หรือ Linux Machine ผ่าน Command Line</div>
                 </div>
                 <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank" class="btn-download btn-net">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">WinSCP</div>
                     <div class="item-desc">โปรแกรมโอนย้ายไฟล์ระหว่าง Windows กับ Linux/Server ผ่านโปรโตคอล SFTP, SCP และ FTP พร้อม GUI ที่ใช้งานง่าย</div>
                 </div>
                 <a href="https://winscp.net/eng/download.php" target="_blank" class="btn-download btn-net">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Wireshark</div>
                     <div class="item-desc">Network Protocol Analyzer ระดับมืออาชีพ ใช้วิเคราะห์ Packet ในเครือข่ายเพื่อแก้ปัญหาเน็ตเวิร์กเชิงลึก</div>
                 </div>
                 <a href="https://www.wireshark.org/download.html" target="_blank" class="btn-download btn-net">ไปที่หน้าโหลด</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
+    <!-- หมวดหมู่ใหม่ A5: Remote Desktop เพิ่มเติม -->
     <div class="category" id="remote">
-        <h2 class="category-title">🖥️ โปรแกรมรีโมทและซัพพอร์ตทางไกล (Remote Desktop & Support)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">🖥️ โปรแกรมรีโมทและซัพพอร์ตทางไกล (Remote Desktop & Support)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">RustDesk</div>
                     <div class="item-desc">ทางเลือก Open-source แทน TeamViewer/AnyDesk ใช้งานง่าย ไม่ต้องติดตั้งก็ได้ รองรับการ Host เซิร์ฟเวอร์เองเพื่อความปลอดภัยสูงสุด</div>
                 </div>
                 <a href="https://rustdesk.com/" target="_blank" class="btn-download btn-gh">ไปที่หน้าโหลด (GitHub)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">TeamViewer</div>
                     <div class="item-desc">ซอฟต์แวร์รีโมทระดับมาตรฐานอุตสาหกรรม ฟีเจอร์ครบครัน (ฟรีสำหรับการใช้งานส่วนบุคคล)</div>
                 </div>
                 <a href="https://www.teamviewer.com/en/download/" target="_blank" class="btn-download btn-net">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Chrome Remote Desktop</div>
                     <div class="item-desc">ส่วนขยายของ Google Chrome สำหรับรีโมทเครื่องผ่านเบราว์เซอร์ เบาเครื่องและไม่ต้องติดตั้งโปรแกรมเพิ่ม</div>
                 </div>
                 <a href="https://remotedesktop.google.com/" target="_blank" class="btn-download btn-ms">ไปที่หน้าเว็บ</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="clean">
-        <h2 class="category-title">🧹 ทำความสะอาดและ Optimize ระบบ</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">🧹 ทำความสะอาดและ Optimize ระบบ</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">BleachBit</div>
                     <div class="item-desc">โปรแกรมล้างไฟล์ขยะ Open-source (ทางเลือกที่ปลอดภัยกว่า CCleaner) ลบ Cache, Cookies, Temp Files และเขียนทับพื้นที่ว่างเพื่อความเป็นส่วนตัว</div>
                 </div>
                 <a href="https://www.bleachbit.org/download/windows" target="_blank" class="btn-download btn-clean">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Revo Uninstaller Free</div>
                     <div class="item-desc">โปรแกรมถอนการติดตั้งที่ล้าง Registry และไฟล์ตกค้างได้หมดจด พร้อมโหมด Hunter สำหรับลบโปรแกรมที่ถอนปกติไม่ได้</div>
                 </div>
                 <a href="https://www.revouninstaller.com/revo-uninstaller-free-download/" target="_blank" class="btn-download btn-clean">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Autoruns (Sysinternals)</div>
                     <div class="item-desc">เครื่องมือจาก Microsoft สำหรับดูและจัดการรายการ Startup ทั้งหมด (Registry, Services, Drivers, Tasks) ช่วยแก้ปัญหาเครื่องบูตช้าและเช็คไวรัส</div>
                 </div>
                 <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns" target="_blank" class="btn-download btn-clean">ไปที่หน้าโหลด (Microsoft)</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="sysutil">
-        <h2 class="category-title">⚙️ เครื่องมือจัดการระบบและสคริปต์ (System Utilities & Scripts)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">⚙️ เครื่องมือจัดการระบบและสคริปต์ (System Utilities & Scripts)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
-                    <div class="item-title">Massgrave (MAS)</div>
+                    <div class="item-title">Massgrave (Microsoft Activation Scripts - MAS)</div>
                     <div class="item-desc">แหล่งรวมสคริปต์แบบ Open-source ยอดนิยมสำหรับจัดการและตรวจสอบสถานะระบบปฏิบัติการ ผ่าน PowerShell/CMD ปลอดภัยและโปร่งใส</div>
                 </div>
                 <a href="https://massgrave.dev/" target="_blank" class="btn-download btn-dark">ไปที่หน้าเว็บ (Official)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Microsoft Sysinternals Suite</div>
                     <div class="item-desc">คลังเครื่องมือขั้นสูงจาก Microsoft (Process Explorer, TCPView, ProcMon ฯลฯ) สำหรับแก้ไวรัส วินิจฉัยปัญหา และวิเคราะห์ระบบเชิงลึก</div>
                 </div>
                 <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite" target="_blank" class="btn-download btn-dark">ไปที่หน้าโหลด (Microsoft)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">PowerToys</div>
-                    <div class="item-desc">ชุดเครื่องมือเสริมจาก Microsoft เพิ่มฟีเจอร์ขั้นสูงให้ Windows เช่น PowerRename, FancyZones, Color Picker, Keyboard Manager</div>
+                    <div class="item-desc">ชุดユーทิลิตี้จาก Microsoft เพิ่มฟีเจอร์ขั้นสูงให้ Windows เช่น PowerRename, FancyZones, Color Picker, Keyboard Manager</div>
                 </div>
                 <a href="https://github.com/microsoft/PowerToys/releases" target="_blank" class="btn-download btn-gh">ไปที่หน้าโหลด (GitHub)</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="apps">
-        <h2 class="category-title">🚀 โปรแกรมติดตั้งประจำเครื่อง (Applications & Utilities)</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">🚀 โปรแกรมติดตั้งประจำเครื่อง (Applications & Utilities)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Ninite (Multi-App Installer)</div>
                     <div class="item-desc">เว็บมัดรวมโปรแกรมเด็ด ติ๊กเลือกโปรแกรมที่ต้องการ (เช่น Chrome, 7-Zip, VLC) แล้วโหลดไฟล์ติดตั้งไปรัน มันจะติดตั้งให้อัตโนมัติแบบไร้ของแถมขยะ</div>
                 </div>
                 <a href="https://ninite.com/" target="_blank" class="btn-download btn-ninite">ไปเลือกโปรแกรมที่ Ninite</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">7-Zip</div>
                     <div class="item-desc">โปรแกรมบีบอัด-คลายไฟล์ Open-source ที่รองรับฟอร์แมตได้หลากหลายที่สุด (7z, zip, rar, iso) น้ำหนักเบา ไม่มีโฆษณา</div>
                 </div>
                 <a href="https://www.7-zip.org/download.html" target="_blank" class="btn-download">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">VLC Media Player</div>
                     <div class="item-desc">เครื่องเล่นสื่อสารพัดเทศ กินไฟล์วิดีโอและ audio ได้แทบทุกนามสกุลโดยไม่ต้องลง Codec เพิ่ม Open-source และไม่มีโฆษณา</div>
                 </div>
                 <a href="https://www.videolan.org/vlc/" target="_blank" class="btn-download">ไปที่หน้าโหลด</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">AnyDesk (Remote Desktop)</div>
-                    <div class="item-desc">โปรแกรมรีโมทหน้าจอขนาดย่อม สำหรับให้ผู้ดูแลเข้าช่วยควบคุมแก้ไขปัญหาจากระยะไกล</div>
+                    <div class="item-desc">โปรแกรมรีโมทหน้าจอขนาดย่อม สำหรับให้ช่างไอทีหรือผู้ดูแลเข้าช่วยควบคุมแก้ไขปัญหาจากระยะไกล</div>
                 </div>
                 <a href="https://anydesk.com/th/downloads" target="_blank" class="btn-download">ไปที่หน้าโหลด (Official)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">Malwarebytes Free</div>
                     <div class="item-desc">สแกนและลบมัลแวร์ แอดแวร์ และสปายแวร์ที่ Antivirus ทั่วไปอาจตรวจจับไม่ได้ ใช้เป็นเครื่องมือเสริมในการล้างเครื่อง</div>
                 </div>
                 <a href="https://www.malwarebytes.com/mwb-download" target="_blank" class="btn-download">ไปที่หน้าโหลด</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="software">
-        <h2 class="category-title">🌐 เว็บไซต์ดาวน์โหลดซอฟต์แวร์ & คลังโปรแกรม</h2>
-        <div class="download-grid">
-            <div class="download-item">
+        <div class="category-title">🌐 เว็บไซต์ดาวน์โหลดซอฟต์แวร์ & คลังโปรแกรม (Software Warehouses)</div>
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">I-LoadZone</div>
-                    <div class="item-desc">ศูนย์รวมดาวน์โหลดโปรแกรม ซอฟต์แวร์ และระบบปฏิบัติการ Windows ตัวเต็ม มีการจัดหมวดหมู่และลิงก์ดาวน์โหลดที่อัปเดตอย่างต่อเนื่อง</div>
+                    <div class="item-desc">ศูนย์รวมดาวน์โหลดโปรแกรม ซอฟต์แวร์ และระบบปฏิบัติการ Windows ตัวเต็ม มีการจัดหมวดหมู่และลิงก์ดาวน์โหลดที่อัปเดตอย่างต่อเนื่องสำหรับสายช่างและผู้ใช้งานทั่วไป</div>
                 </div>
                 <a href="https://i-loadzone.com/" target="_blank" class="btn-download btn-iload">ไปที่หน้าเว็บ (Official)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">FileHippo</div>
                     <div class="item-desc">คลังซอฟต์แวร์เก่า-ใหม่ที่มีประวัติเวอร์ชันครบถ้วน เหมาะสำหรับการหาโปรแกรมเวอร์ชันเก่าที่เข้ากันได้กับเครื่องรุ่นเก่า</div>
                 </div>
                 <a href="https://filehippo.com/" target="_blank" class="btn-download">ไปที่หน้าเว็บ</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="category" id="torrent">
-        <h2 class="category-title">📥 เครื่องมือดาวน์โหลด & คลังไฟล์ Torrent (P2P)</h2>
+        <div class="category-title">📥 เครื่องมือดาวน์โหลด & คลังไฟล์ Torrent (P2P Downloads)</div>
         <div class="disclaimer">
             <strong>⚠️ คำเตือน:</strong> ลิงก์ในส่วนนี้เป็นการเข้าถึงแหล่งไฟล์แบบ P2P/Community โปรดใช้วิจารณญาณ ตรวจสอบ Checksum (SHA-256) และสแกนไวรัสด้วยหลาย ๆ Engine (เช่น VirusTotal) ก่อนนำไปใช้งานเสมอ ผู้ดูแลเว็บไม่สนับสนุนการละเมิดลิขสิทธิ์
         </div>
-        <div class="download-grid">
-            <div class="download-item">
+        <ul class="download-list">
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">qBittorrent</div>
                     <div class="item-desc">โปรแกรมดาวน์โหลดบิททอร์เรนต์ (BitTorrent Client) ที่ดีที่สุดในปัจจุบัน เป็น Open-source น้ำหนักเบา ทำงานเร็วมาก และไม่มีโฆษณาแฝงเหมือน uTorrent</div>
                 </div>
                 <a href="https://www.qbittorrent.org/download" target="_blank" class="btn-download btn-torrent">ไปที่หน้าโหลด (Official)</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">1337x</div>
                     <div class="item-desc">เว็บไซต์ดัชนีรวบรวมไฟล์ Torrent และลิงก์ Magnet ยอดนิยม มีการแบ่งหมวดหมู่ซอฟต์แวร์ ภาพยนตร์ และเกมไว้อย่างชัดเจนพร้อมระบบรีวิวจากผู้ใช้</div>
                 </div>
                 <a href="https://1337x.to/" target="_blank" class="btn-download btn-pirate">ไปที่หน้าเว็บ</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">The Pirate Bay (TPB)</div>
                     <div class="item-desc">เว็บไซต์สารบบไฟล์ Torrent ระดับตำนานที่เก่าแก่ที่สุด เหมาะสำหรับการค้นหาไฟล์ ซอฟต์แวร์เก่า หรือสื่อต่างๆ ที่หาจากแหล่งอื่นได้ยาก</div>
                 </div>
                 <a href="https://thepiratebay.org/" target="_blank" class="btn-download btn-pirate">ไปที่หน้าเว็บ</a>
-            </div>
-            <div class="download-item">
+            </li>
+            <li class="download-item">
                 <div class="item-info">
                     <div class="item-title">VirusTotal (สแกนไฟล์/URL)</div>
                     <div class="item-desc">เว็บสแกนไฟล์และ URL ด้วย Antivirus กว่า 70 Engine พร้อมกัน แนะนำให้ใช้ก่อนเปิดไฟล์ที่โหลดจากแหล่งไม่แน่นอน</div>
                 </div>
                 <a href="https://www.virustotal.com/" target="_blank" class="btn-download">ไปที่หน้าเว็บ</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
     <div class="no-results" id="noResults">
@@ -844,6 +837,7 @@
 </div>
 
 <button class="back-to-top" id="backToTop" aria-label="กลับขึ้นบนสุด">
+    <span class="tooltip">กลับขึ้นบนสุด</span>
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
     </svg>
@@ -891,15 +885,7 @@ document.querySelectorAll('.quick-nav a').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            // เผื่อระยะให้ Header ด้านบนที่ติด Sticky
-            const headerOffset = 140; 
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
